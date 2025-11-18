@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://bya01e7nmqedt"]
+
+[ext_resource type="Script" path="res://turret/projectile.gd" id="1_go6rt"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tf7ss"]
+albedo_color = Color(0.639216, 0, 0.0666667, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_irv0c"]
+material = SubResource("StandardMaterial3D_tf7ss")
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_p3814"]
+
+[node name="Projectile" type="Area3D"]
+top_level = true
+script = ExtResource("1_go6rt")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_irv0c")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_p3814")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
