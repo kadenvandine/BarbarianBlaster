@@ -6,15 +6,15 @@ extends Node3D
 var enemy_path: Path3D
 var target: PathFollow3D
 
-@onready var barrel = $TurretBase/TurretTop/Visor/Barrel
+@onready var barrel: MeshInstance3D = $TurretBase/TurretTop/Visor/Barrel
 
 func _physics_process(delta: float) -> void:
-	var enemy = find_best_target()
-	if target != null:
+	target = find_best_target()
+	if target:
 		look_at(target.global_position, Vector3.UP, true)
 
 func _on_timer_timeout():
-	if target != null:
+	if target:
 		var shot = projectile.instantiate()
 		add_child(shot)
 		shot.global_position = barrel.global_position
