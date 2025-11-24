@@ -1,0 +1,65 @@
+[gd_scene load_steps=7 format=3 uid="uid://bbbvx7lmq1rn0"]
+
+[ext_resource type="Script" path="res://turret_quick.gd" id="1_udbx5"]
+[ext_resource type="PackedScene" uid="uid://csokikhjwwdoh" path="res://Assets/GLB format/weapon-turret.glb" id="1_vkdxa"]
+[ext_resource type="PackedScene" uid="uid://dragre3qltqak" path="res://Assets/GLB format/tower-square-build-a.glb" id="2_pyng8"]
+
+[sub_resource type="Animation" id="Animation_jlbdq"]
+resource_name = "fire"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TurretBase/TurretTop:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0.3, -0.6), Vector3(0, 0.3, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_83qd5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TurretBase/TurretTop:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.3, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4yfqt"]
+_data = {
+"RESET": SubResource("Animation_83qd5"),
+"fire": SubResource("Animation_jlbdq")
+}
+
+[node name="TurretQuick" type="Node3D"]
+script = ExtResource("1_udbx5")
+
+[node name="TurretBase" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+
+[node name="TurretTop" type="Node3D" parent="TurretBase"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
+
+[node name="TurretGun" parent="TurretBase/TurretTop" instance=ExtResource("1_vkdxa")]
+transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 0, 1.20386, 0)
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_4yfqt")
+}
+
+[node name="PurpleTower" parent="." instance=ExtResource("2_pyng8")]
+transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 0, 0, 0)

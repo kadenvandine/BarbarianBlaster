@@ -1,0 +1,46 @@
+[gd_scene load_steps=3 format=3 uid="uid://djwfvcb6uw1ol"]
+
+[ext_resource type="Texture2D" uid="uid://bq5v2q5pgsdan" path="res://Assets/Turret.png" id="1_wwwkl"]
+[ext_resource type="Texture2D" uid="uid://b25qx6vpxp1qv" path="res://Assets/QuickTurret.png" id="2_ttsd3"]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -715.0
+offset_bottom = -538.0
+grow_horizontal = 0
+grow_vertical = 2
+color = Color(0, 0, 0, 0.588235)
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+offset_left = 449.0
+offset_top = 9.0
+offset_right = 1143.0
+offset_bottom = 102.0
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/PanelContainer"]
+layout_direction = 2
+layout_mode = 2
+
+[node name="Turret" type="Button" parent="MarginContainer/PanelContainer/HBoxContainer"]
+layout_mode = 2
+text = "     Turret     "
+icon = ExtResource("1_wwwkl")
+icon_alignment = 1
+vertical_icon_alignment = 0
+expand_icon = true
+
+[node name="Quickfire Turret" type="Button" parent="MarginContainer/PanelContainer/HBoxContainer"]
+layout_mode = 2
+text = "Quickfire Turret"
+icon = ExtResource("2_ttsd3")
+icon_alignment = 1
+vertical_icon_alignment = 0
+expand_icon = true

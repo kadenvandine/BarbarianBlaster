@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://dsg6g6n7odkku"]
+[gd_scene load_steps=23 format=3 uid="uid://dsg6g6n7odkku"]
 
 [ext_resource type="PackedScene" uid="uid://d1jgdbq8ej5d1" path="res://RayPickerCamera/ray_picker_camera.tscn" id="1_4fr0t"]
 [ext_resource type="MeshLibrary" uid="uid://rqrf7vkd782s" path="res://MeshLibraries/SpaceLibrary.tres" id="1_svbj1"]
@@ -7,11 +7,13 @@
 [ext_resource type="PackedScene" uid="uid://ba5162yegmh4r" path="res://base/base.tscn" id="3_ln1i7"]
 [ext_resource type="Script" path="res://TurretManager.gd" id="5_15vcq"]
 [ext_resource type="PackedScene" uid="uid://ci0tkpy016cyt" path="res://turret/turret.tscn" id="6_dkexh"]
+[ext_resource type="PackedScene" uid="uid://bbbvx7lmq1rn0" path="res://turret_quick.tscn" id="8_nuyta"]
 [ext_resource type="FontFile" uid="uid://dutp781p7514m" path="res://Assets/Asap/static/Asap-BoldItalic.ttf" id="8_qvjmv"]
 [ext_resource type="Script" path="res://Bank.gd" id="8_rtyvm"]
 [ext_resource type="PackedScene" uid="uid://cfckcbxwo3ma0" path="res://DifficultyManager/difficulty_manager.tscn" id="9_fmh2w"]
 [ext_resource type="PackedScene" uid="uid://dajjkhsantum" path="res://DifficultyManager/UserInterface/victory_layer.tscn" id="10_cnq5y"]
 [ext_resource type="PackedScene" uid="uid://crpw67q5yagc1" path="res://DifficultyManager/UserInterface/defeat_layer.tscn" id="12_uijrt"]
+[ext_resource type="PackedScene" uid="uid://djwfvcb6uw1ol" path="res://DifficultyManager/UserInterface/game_layer.tscn" id="14_6hptv"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_3corq"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -131,6 +133,7 @@ defeat_layer = NodePath("../DefeatLayer")
 [node name="TurretManager" type="Node3D" parent="." node_paths=PackedStringArray("enemy_path")]
 script = ExtResource("5_15vcq")
 turret = ExtResource("6_dkexh")
+turret_quick = ExtResource("8_nuyta")
 enemy_path = NodePath("../EnemyPath")
 
 [node name="Bank" type="MarginContainer" parent="." groups=["bank"]]
@@ -161,6 +164,8 @@ game_length = 180.0
 visible = false
 
 [node name="DefeatLayer" parent="." instance=ExtResource("12_uijrt")]
+
+[node name="GameLayer" parent="." instance=ExtResource("14_6hptv")]
 
 [connection signal="timeout" from="EnemyPath/Timer" to="EnemyPath" method="spawn_enemy"]
 [connection signal="stop_spawning_enemies" from="DifficultyManager" to="EnemyPath" method="_on_difficulty_manager_stop_spawning_enemies"]
