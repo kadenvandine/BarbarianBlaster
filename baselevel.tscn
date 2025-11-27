@@ -1,10 +1,11 @@
-[gd_scene load_steps=23 format=3 uid="uid://dsg6g6n7odkku"]
+[gd_scene load_steps=24 format=3 uid="uid://dsg6g6n7odkku"]
 
 [ext_resource type="PackedScene" uid="uid://d1jgdbq8ej5d1" path="res://RayPickerCamera/ray_picker_camera.tscn" id="1_4fr0t"]
 [ext_resource type="MeshLibrary" uid="uid://rqrf7vkd782s" path="res://MeshLibraries/SpaceLibrary.tres" id="1_svbj1"]
 [ext_resource type="PackedScene" uid="uid://n8ct3xk5c4vc" path="res://Enemy/enemy.tscn" id="2_lhh3q"]
 [ext_resource type="Script" path="res://EnemyPath.gd" id="3_ckvxq"]
 [ext_resource type="PackedScene" uid="uid://ba5162yegmh4r" path="res://base/base.tscn" id="3_ln1i7"]
+[ext_resource type="Material" uid="uid://b3080baa7rcmb" path="res://ghost_can_build.tres" id="4_mxdo1"]
 [ext_resource type="Script" path="res://TurretManager.gd" id="5_15vcq"]
 [ext_resource type="PackedScene" uid="uid://ci0tkpy016cyt" path="res://turret/turret.tscn" id="6_dkexh"]
 [ext_resource type="PackedScene" uid="uid://bbbvx7lmq1rn0" path="res://turret_quick.tscn" id="8_nuyta"]
@@ -69,6 +70,7 @@ gridmap = NodePath("../GridMap")
 turret_manager = NodePath("../TurretManager")
 turret_scene = ExtResource("6_dkexh")
 turret_quick_scene = ExtResource("8_nuyta")
+ghost_material_can_build = ExtResource("4_mxdo1")
 
 [node name="GridMap" type="GridMap" parent="."]
 mesh_library = ExtResource("1_svbj1")
