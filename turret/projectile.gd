@@ -1,9 +1,9 @@
 extends Area3D
 
 var direction := Vector3.FORWARD
+var damage := 25
 
 @export var speed := 30.0
-@export var damage := 25
 
 func _physics_process(delta: float) -> void:
 	position += direction * speed * delta

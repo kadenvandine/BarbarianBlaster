@@ -33,8 +33,6 @@ func _process(delta):
 	if not is_instance_valid(_ghost_turret):
 		return
 	_ghost_turret.visible = false
-	var ghost_mesh = _ghost_turret.get_node_or_null("TurretBase")
-	if not ghost_mesh: return
 	var current_cost = 0
 	if selected_turret_type == "normal":
 		current_cost = turret_cost
@@ -52,7 +50,7 @@ func _process(delta):
 		var is_empty = gridmap.get_cell_item(cell) == 0
 		
 		if is_empty and has_gold:
-			ghost_mesh.material_override = ghost_material_can_build
+			_set_ghost_material(_ghost_turret, ghost_material_can_build)
 			Input.set_default_cursor_shape(Input.CURSOR_POINTING_HAND)
 			
 			if Input.is_action_just_pressed("click"):
@@ -65,40 +63,30 @@ func _process(delta):
 					turret_manager.build_turret_quick(tile_position)
 		
 		else:
-			ghost_mesh.material_override = ghost_material_cannot_build
+			_set_ghost_material(_ghost_turret, ghost_material_cannot_build)
 
 func _on_build_turret_pressed():
 	selected_turret_type = "normal"
 	spawn_ghost_turret(turret_scene)
+	
+	
 func _on_build_turret_quick_pressed():
 	selected_turret_type = "quick"
 	spawn_ghost_turret(turret_quick_scene)
+	
+	
 func spawn_ghost_turret(scene: PackedScene):
 	if is_instance_valid(_ghost_turret):
 		_ghost_turret.queue_free()
 	if scene:
 		_ghost_turret = scene.instantiate()
-		var mesh = _ghost_turret.get_node_or_null("TurretBase")
-		if mesh and mesh is MeshInstance3D:
-			mesh.material_override = ghost_material_cannot_build
-		else:
-			print("Cannot find 'TurretBase mesh node in ghost turret!")
+		_set_ghost_material(_ghost_turret, ghost_material_cannot_build)
 		turret_manager.add_child(_ghost_turret)
 		_ghost_turret.visible = false
-					
-#		if bank.gold >= turret_cost:
-#			Input.set_default_cursor_shape(Input.CURSOR_POINTING_HAND)
-#			var collider = ray_cast_3d.get_collider()
-#			if collider is GridMap:
-#				if Input.is_action_just_pressed("click"):
-#					var collision_point = ray_cast_3d.get_collision_point()
-#					var cell = gridmap.local_to_map(collision_point)
-#					if gridmap.get_cell_item(cell) == 0:
-#						gridmap.set_cell_item(cell, 1)
-#						var tile_position = gridmap.map_to_local(cell)
-#						turret_manager.build_turret(tile_position)
-#						bank.gold -= turret_cost
-#		else:
-#			Input.set_default_cursor_shape(Input.CURSOR_ARROW)
-#	else:
-#		Input.set_default_cursor_shape(Input.CURSOR_ARROW)
+		
+		
+func _set_ghost_material(node: Node, material: StandardMaterial3D):
+	if node is MeshInstance3D:
+		node.material_override = material
+	for child in node.get_children():
+		_set_ghost_material(child, material)

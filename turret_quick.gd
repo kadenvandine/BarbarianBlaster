@@ -2,6 +2,7 @@ extends Node3D
 
 @export var projectile: PackedScene
 @export var turret_range := 10.0
+@export var projectile_damage := 20
 
 var enemy_path: Path3D
 var target: PathFollow3D
@@ -18,6 +19,7 @@ func _physics_process(delta: float) -> void:
 func _on_timer_timeout():
 	if target:
 		var shot = projectile.instantiate()
+		shot.damage = projectile_damage
 		add_child(shot)
 		shot.global_position = turretgun.global_position
 		shot.direction = turret_base.global_transform.basis.z

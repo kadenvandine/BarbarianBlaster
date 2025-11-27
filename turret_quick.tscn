@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://bbbvx7lmq1rn0"]
+[gd_scene load_steps=8 format=3 uid="uid://bbbvx7lmq1rn0"]
 
 [ext_resource type="Script" path="res://turret_quick.gd" id="1_udbx5"]
 [ext_resource type="PackedScene" uid="uid://csokikhjwwdoh" path="res://Assets/GLB format/weapon-turret.glb" id="1_vkdxa"]
+[ext_resource type="PackedScene" uid="uid://bya01e7nmqedt" path="res://turret/projectile.tscn" id="2_4x2lt"]
 [ext_resource type="PackedScene" uid="uid://dragre3qltqak" path="res://Assets/GLB format/tower-square-build-a.glb" id="2_pyng8"]
 
 [sub_resource type="Animation" id="Animation_jlbdq"]
@@ -43,6 +44,8 @@ _data = {
 
 [node name="TurretQuick" type="Node3D"]
 script = ExtResource("1_udbx5")
+projectile = ExtResource("2_4x2lt")
+turret_range = 8.0
 
 [node name="TurretBase" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
@@ -54,6 +57,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
 transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 0, 1.20386, 0)
 
 [node name="Timer" type="Timer" parent="."]
+wait_time = 0.55
 autostart = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -63,3 +67,5 @@ libraries = {
 
 [node name="PurpleTower" parent="." instance=ExtResource("2_pyng8")]
 transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 0, 0, 0)
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
