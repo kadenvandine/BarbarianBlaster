@@ -1,6 +1,5 @@
 # [Your Game Title]
 
-![Made with Godot](httpsD-img.shields.io_badge_Made_with-Godot_Engine-478CBF.svg?logo=godotengine)
 [Your Game Title] is a fast-paced 3D tower defense game where you must defend your base from an increasingly deadly wave of barbarians.
 
 ---
