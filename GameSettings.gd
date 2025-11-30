@@ -18,6 +18,13 @@ const SPEED_CURVES = [SPEED_EASY, SPEED_NORMAL, SPEED_HARD]
 
 var selected_difficulty_index := 1
 
+const SAVE_PATH = "user://settings.cfg"
+
+var show_tutorial := true
+
+func _ready():
+	load_settings()
+
 func set_difficulty_index(index: int):
 	if index >= 0 and index < SPAWN_CURVES.size():
 		selected_difficulty_index = index
@@ -31,3 +38,25 @@ func get_current_health_curve() -> Curve:
 
 func get_current_speed_curve() -> Curve:
 	return SPEED_CURVES[selected_difficulty_index]
+
+func set_show_tutorial(value: bool):
+	show_tutorial = value
+	save_settings()
+	
+func save_settings():
+	var config = ConfigFile.new()
+	config.set_value("settings", "show_tutorial", show_tutorial)
+
+	var error = config.save(SAVE_PATH)
+	if error != OK:
+		print("Failed to save settings to: " + SAVE_PATH)
+		
+func load_settings():
+	var config = ConfigFile.new()
+	var error = config.load(SAVE_PATH)
+	
+	if error != OK:
+		print("No settings file found. Using default settings.")
+		return
+	
+	show_tutorial = config.get_value("settings", "show_tutorial", true)
