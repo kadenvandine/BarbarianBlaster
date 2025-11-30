@@ -1,4 +1,3 @@
-# TutorialManager.gd
 extends CanvasLayer
 
 enum State {
@@ -68,21 +67,27 @@ func set_state(new_state: State):
 	highlight_arrow.visible = false
 	skip_tutorial_check.visible = false # <-- Hide by default
 	next_button.text = "Next"
-	if is_instance_valid(build_turret_button):
-		build_turret_button.disabled = true
-	if is_instance_valid(quick_turret_button):
-		quick_turret_button.disabled = true
 
 	match new_state:
 		State.INACTIVE:
 			visible = false
 			get_tree().paused = false
+			print("NEW_STATE")
+			if is_instance_valid(build_turret_button):
+				build_turret_button.disabled = false
+			else:
+				print("ERROR: turret button")
+			if is_instance_valid(quick_turret_button):
+				quick_turret_button.disabled = false
+			else:
+				print("ERROR: quick turret button")
+			print("TUTORIAL OVERRR")
+			
+		State.STEP_1_ENEMY_INTRO:
 			if is_instance_valid(build_turret_button):
 				build_turret_button.disabled = true
 			if is_instance_valid(quick_turret_button):
 				quick_turret_button.disabled = true
-			
-		State.STEP_1_ENEMY_INTRO:
 			tutorial_text.text = "Here come the barbarians! Your base is under attack. You must defend it!"
 			
 		State.STEP_2_TURRET_BUTTON:
@@ -95,10 +100,18 @@ func set_state(new_state: State):
 				quick_turret_button.disabled = false
 			
 		State.STEP_3_TURRET_PLACE:
+			if is_instance_valid(build_turret_button):
+				build_turret_button.disabled = true
+			if is_instance_valid(quick_turret_button):
+				quick_turret_button.disabled = true
 			tutorial_text.text = "Great! Now left-click on an empty green tile to place your turret."
 			next_button.visible = false
 		
 		State.STEP_4_COMPLETE:
+			if is_instance_valid(build_turret_button):
+				build_turret_button.disabled = true
+			if is_instance_valid(quick_turret_button):
+				quick_turret_button.disabled = true
 			tutorial_text.text = "Excellent! Your turret will now attack enemies. Keep placing turrets as the barbarians become more fierce! Good luck!"
 			next_button.text = "Finish"
 			skip_tutorial_check.visible = true # <-- Show on the last step

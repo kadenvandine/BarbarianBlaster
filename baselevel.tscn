@@ -1,8 +1,9 @@
-[gd_scene load_steps=29 format=3 uid="uid://dsg6g6n7odkku"]
+[gd_scene load_steps=30 format=3 uid="uid://dsg6g6n7odkku"]
 
 [ext_resource type="Script" path="res://baselevel.gd" id="1_0gb7o"]
 [ext_resource type="PackedScene" uid="uid://d1jgdbq8ej5d1" path="res://RayPickerCamera/ray_picker_camera.tscn" id="1_4fr0t"]
 [ext_resource type="MeshLibrary" uid="uid://rqrf7vkd782s" path="res://MeshLibraries/SpaceLibrary.tres" id="1_svbj1"]
+[ext_resource type="PackedScene" uid="uid://biq68l1tkse7h" path="res://pause_menu.tscn" id="2_jx03x"]
 [ext_resource type="PackedScene" uid="uid://n8ct3xk5c4vc" path="res://Enemy/enemy.tscn" id="2_lhh3q"]
 [ext_resource type="Script" path="res://EnemyPath.gd" id="3_ckvxq"]
 [ext_resource type="PackedScene" uid="uid://ba5162yegmh4r" path="res://base/base.tscn" id="3_ln1i7"]
@@ -58,6 +59,7 @@ outline_color = Color(0, 0, 0, 1)
 
 [node name="BaseLevel" type="Node3D"]
 script = ExtResource("1_0gb7o")
+pause_menu_scene = ExtResource("2_jx03x")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_3mgsu")

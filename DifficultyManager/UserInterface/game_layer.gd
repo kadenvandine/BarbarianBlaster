@@ -48,6 +48,7 @@ func _on_quickfire_turret_mouse_entered():
 const TURRET_STATS_TEXT = """
 Normal Turret
 • Damage: 25
+• Reload Speed: 1.00s
 • Range: 10
 • Cost: 100
 """
@@ -55,6 +56,7 @@ Normal Turret
 const QUICK_TURRET_STATS_TEXT = """
 Quickfire Turret
 • Damage: 20
-• Range: 10
+• Reload Speed: 0.55s
+• Range: 6
 • Cost: 150
 """

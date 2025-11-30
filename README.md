@@ -17,6 +17,7 @@
 | --- | --- |
 | `Left Mouse Click` | Place Turret / Interact with UI (Turret Selector and Game Menus) |
 | `Right Mouse Click` | Cancel Turret Selection |
+| `Escape` | Pause |
 
 ---
 

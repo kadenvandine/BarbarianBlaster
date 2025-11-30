@@ -1,0 +1,74 @@
+[gd_scene load_steps=5 format=3 uid="uid://biq68l1tkse7h"]
+
+[ext_resource type="Script" path="res://pause_menu.gd" id="1_q5yad"]
+[ext_resource type="FontFile" uid="uid://cg5vqmhujks6l" path="res://Assets/Asap/static/Asap-ExtraBoldItalic.ttf" id="2_4el0l"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5wmjv"]
+content_margin_left = 20.0
+content_margin_top = 20.0
+content_margin_right = 20.0
+content_margin_bottom = 20.0
+bg_color = Color(0.133333, 0.133333, 0.133333, 0.803922)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vf8ce"]
+content_margin_left = 20.0
+content_margin_top = 20.0
+content_margin_right = 20.0
+content_margin_bottom = 20.0
+bg_color = Color(0.133333, 0.133333, 0.133333, 0.929412)
+
+[node name="PauseLayer" type="CanvasLayer"]
+process_mode = 3
+script = ExtResource("1_q5yad")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_5wmjv")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="CenterContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_vf8ce")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer"]
+layout_mode = 2
+
+[node name="TitleLabel" type="Label" parent="CenterContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.733333, 0.109804, 0.188235, 1)
+theme_override_colors/font_shadow_color = Color(0, 1, 0, 1)
+theme_override_colors/font_outline_color = Color(0.341176, 0.121569, 0.827451, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("2_4el0l")
+text = "       Barbarian Blaster      "
+
+[node name="DifficultyLabel" type="Label" parent="CenterContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "   Difficulty   "
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="ResumeButton" type="Button" parent="CenterContainer/PanelContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "   Resume   "
+
+[node name="Control" type="Control" parent="CenterContainer/PanelContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+
+[node name="QuitButton" type="Button" parent="CenterContainer/PanelContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "   Quit   "

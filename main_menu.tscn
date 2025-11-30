@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://c0yvy5xbj3unx"]
+[gd_scene load_steps=4 format=3 uid="uid://c0yvy5xbj3unx"]
 
 [ext_resource type="Script" path="res://main_menu.gd" id="1_ytyid"]
+[ext_resource type="FontFile" uid="uid://cg5vqmhujks6l" path="res://Assets/Asap/static/Asap-ExtraBoldItalic.ttf" id="2_1m5q0"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t52bx"]
 content_margin_left = 20.0
@@ -35,8 +36,13 @@ layout_mode = 2
 
 [node name="TitleLabel" type="Label" parent="CenterContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.733333, 0.109804, 0.188235, 1)
+theme_override_colors/font_shadow_color = Color(0, 1, 0, 1)
+theme_override_colors/font_outline_color = Color(0.341176, 0.121569, 0.827451, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("2_1m5q0")
 theme_override_font_sizes/font_size = 48
-text = "Tower Defense  Game 3D Project"
+text = "Barbarian Blaster"
 horizontal_alignment = 1
 
 [node name="SubtitleLabel" type="Label" parent="CenterContainer/PanelContainer/VBoxContainer"]
