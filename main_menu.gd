@@ -1,7 +1,7 @@
-extends Control
+extends CanvasLayer
 
-@onready var difficulty_dropdown = $CenterContainer/VBoxContainer/DifficultyDropdown
-@onready var play_button = $CenterContainer/VBoxContainer/PlayButton
+@onready var difficulty_dropdown = $CenterContainer/PanelContainer/VBoxContainer/DifficultyDropdown
+@onready var play_button = $CenterContainer/PanelContainer/VBoxContainer/PlayButton
 
 @export var game_scene_path := "res://baselevel.tscn"
 
@@ -19,4 +19,5 @@ func _on_difficulty_selected(index: int):
 	GameSettings.set_difficulty_index(index)
 	
 func _on_play_pressed():
-	get_tree().change_scene_to_file(game_scene_path)
+	get_tree().paused = false
+	queue_free()

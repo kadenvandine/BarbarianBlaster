@@ -1,5 +1,6 @@
-[gd_scene load_steps=27 format=3 uid="uid://dsg6g6n7odkku"]
+[gd_scene load_steps=29 format=3 uid="uid://dsg6g6n7odkku"]
 
+[ext_resource type="Script" path="res://baselevel.gd" id="1_0gb7o"]
 [ext_resource type="PackedScene" uid="uid://d1jgdbq8ej5d1" path="res://RayPickerCamera/ray_picker_camera.tscn" id="1_4fr0t"]
 [ext_resource type="MeshLibrary" uid="uid://rqrf7vkd782s" path="res://MeshLibraries/SpaceLibrary.tres" id="1_svbj1"]
 [ext_resource type="PackedScene" uid="uid://n8ct3xk5c4vc" path="res://Enemy/enemy.tscn" id="2_lhh3q"]
@@ -18,6 +19,7 @@
 [ext_resource type="PackedScene" uid="uid://djwfvcb6uw1ol" path="res://DifficultyManager/UserInterface/game_layer.tscn" id="14_6hptv"]
 [ext_resource type="Script" path="res://GameSettings.gd" id="17_lnkyr"]
 [ext_resource type="PackedScene" uid="uid://tgjo3egxar5h" path="res://tutorial_layer.tscn" id="18_u3sip"]
+[ext_resource type="PackedScene" uid="uid://c0yvy5xbj3unx" path="res://main_menu.tscn" id="20_xr7dw"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_3corq"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -55,6 +57,7 @@ outline_size = 16
 outline_color = Color(0, 0, 0, 1)
 
 [node name="BaseLevel" type="Node3D"]
+script = ExtResource("1_0gb7o")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_3mgsu")
@@ -184,6 +187,8 @@ script = ExtResource("17_lnkyr")
 [node name="TutorialLayer" parent="." node_paths=PackedStringArray("ray_picker_camera", "build_turret_button") instance=ExtResource("18_u3sip")]
 ray_picker_camera = NodePath("../RayPickerCamera")
 build_turret_button = NodePath("../GameLayer/MarginContainer/PanelContainer/HBoxContainer/Turret")
+
+[node name="MainMenu" parent="." instance=ExtResource("20_xr7dw")]
 
 [connection signal="timeout" from="EnemyPath/Timer" to="EnemyPath" method="spawn_enemy"]
 [connection signal="stop_spawning_enemies" from="DifficultyManager" to="EnemyPath" method="_on_difficulty_manager_stop_spawning_enemies"]
